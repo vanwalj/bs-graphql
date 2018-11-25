@@ -21,12 +21,20 @@
   "files": [
     "lib"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vanwalj/bs-graphql.git"
+  },
   "scripts": {
     "build": "bsb -make-world",
     "clean": "bsb -clean-world",
     "format": "ocamlformat ./src/*.ml ./src/*.mli --inplace"
   },
+  "bugs": {
+    "url": "https://github.com/vanwalj/bs-graphql/issues"
+  },
   "devDependencies": {
     "bs-platform": "^4.0.7"
-  }
+  },
+  "gitHead": "bb823b5fed40d7236c60a4c15618192b7c02c463"
 }

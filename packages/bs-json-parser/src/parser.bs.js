@@ -8,7 +8,7 @@ var Pervasives = require("bs-platform/lib/js/pervasives.js");
 var Caml_exceptions = require("bs-platform/lib/js/caml_exceptions.js");
 var Caml_builtin_exceptions = require("bs-platform/lib/js/caml_builtin_exceptions.js");
 
-var $$Error = Caml_exceptions.create("Parser-BsJson.MenhirBasics.Error");
+var $$Error = Caml_exceptions.create("Parser-BsJsonParser.MenhirBasics.Error");
 
 function _menhir_reduce11(_menhir_env, _menhir_stack) {
   var match = _menhir_stack[0];

@@ -1,5 +1,5 @@
 {
-  "name": "bs-json",
+  "name": "bs-json-parser",
   "namespace": true,
   "version": "0.1.0",
   "sources": {

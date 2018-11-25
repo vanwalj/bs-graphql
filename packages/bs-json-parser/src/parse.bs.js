@@ -4,8 +4,8 @@
 var Block = require("bs-platform/lib/js/block.js");
 var Js_exn = require("bs-platform/lib/js/js_exn.js");
 var Lexing = require("bs-platform/lib/js/lexing.js");
-var Lexer$BsJson = require("./lexer.bs.js");
-var Parser$BsJson = require("./parser.bs.js");
+var Lexer$BsJsonParser = require("./lexer.bs.js");
+var Parser$BsJsonParser = require("./parser.bs.js");
 
 function get_position(lexbuf) {
   var pos = lexbuf[/* lex_curr_p */11];
@@ -19,16 +19,16 @@ function get_position(lexbuf) {
 function parse(s) {
   var lexbuf = Lexing.from_string(s);
   try {
-    return /* Ok */Block.__(0, [Parser$BsJson.prog(Lexer$BsJson.read, lexbuf)]);
+    return /* Ok */Block.__(0, [Parser$BsJsonParser.prog(Lexer$BsJsonParser.read, lexbuf)]);
   }
   catch (raw_exn){
     var exn = Js_exn.internalToOCamlException(raw_exn);
-    if (exn[0] === Lexer$BsJson.$$SyntaxError) {
+    if (exn[0] === Lexer$BsJsonParser.$$SyntaxError) {
       return /* Error */Block.__(1, [/* SyntaxError */Block.__(0, [/* tuple */[
                       get_position(lexbuf),
                       exn[1]
                     ]])]);
-    } else if (exn === Parser$BsJson.$$Error) {
+    } else if (exn === Parser$BsJsonParser.$$Error) {
       return /* Error */Block.__(1, [/* ParserError */Block.__(1, [get_position(lexbuf)])]);
     } else {
       throw exn;

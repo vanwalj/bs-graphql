@@ -8,7 +8,7 @@ var Lexing = require("bs-platform/lib/js/lexing.js");
 var Caml_format = require("bs-platform/lib/js/caml_format.js");
 var Caml_exceptions = require("bs-platform/lib/js/caml_exceptions.js");
 
-var $$SyntaxError = Caml_exceptions.create("Lexer-BsJson.SyntaxError");
+var $$SyntaxError = Caml_exceptions.create("Lexer-BsJsonParser.SyntaxError");
 
 function next_line(lexbuf) {
   var pos = lexbuf[/* lex_curr_p */11];
