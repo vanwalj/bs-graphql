@@ -19,7 +19,7 @@
     "url": "git+https://github.com/vanwalj/bs-graphql.git"
   },
   "scripts": {
-    "test": "jest",
+    "test": "npm run format && npm run build && jest",
     "build": "bsb -make-world",
     "clean": "bsb -clean-world",
     "format": "ocamlformat ./__tests__/*.ml ./src/*.ml ./src/*.mli --inplace"

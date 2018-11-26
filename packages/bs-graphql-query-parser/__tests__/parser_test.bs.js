@@ -6,11 +6,343 @@ var Block = require("bs-platform/lib/js/block.js");
 var Parse$BsGraphqlQueryParser = require("../src/parse.bs.js");
 
 describe("Parser", (function () {
-        return Jest.test("inline queries", (function (param) {
+        return Jest.test("simple inline queries", (function (param) {
                       return Jest.Expect[/* toEqual */12](/* Ok */Block.__(0, [/* :: */[
-                                      /* Operation */[/* record */[/* typ : Query */0]],
+                                      /* Operation */Block.__(0, [/* record */[
+                                            /* typ : Query */0,
+                                            /* selection : :: */[
+                                              /* Field */Block.__(0, [/* record */[
+                                                    /* name */"Titi",
+                                                    /* alias */undefined,
+                                                    /* selection */undefined,
+                                                    /* arguments */undefined
+                                                  ]]),
+                                              /* :: */[
+                                                /* Field */Block.__(0, [/* record */[
+                                                      /* name */"Hello",
+                                                      /* alias */undefined,
+                                                      /* selection */undefined,
+                                                      /* arguments */undefined
+                                                    ]]),
+                                                /* [] */0
+                                              ]
+                                            ],
+                                            /* name */undefined,
+                                            /* variables */undefined
+                                          ]]),
                                       /* [] */0
-                                    ]]), Jest.Expect[/* expect */0](Parse$BsGraphqlQueryParser.parse("{ Hello }")));
+                                    ]]), Jest.Expect[/* expect */0](Parse$BsGraphqlQueryParser.parse("{ Hello Titi }")));
+                    }));
+      }));
+
+describe("Parser", (function () {
+        return Jest.test("inline query with alias", (function (param) {
+                      return Jest.Expect[/* toEqual */12](/* Ok */Block.__(0, [/* :: */[
+                                      /* Operation */Block.__(0, [/* record */[
+                                            /* typ : Query */0,
+                                            /* selection : :: */[
+                                              /* Field */Block.__(0, [/* record */[
+                                                    /* name */"Hello",
+                                                    /* alias */"Coucou",
+                                                    /* selection */undefined,
+                                                    /* arguments */undefined
+                                                  ]]),
+                                              /* [] */0
+                                            ],
+                                            /* name */undefined,
+                                            /* variables */undefined
+                                          ]]),
+                                      /* [] */0
+                                    ]]), Jest.Expect[/* expect */0](Parse$BsGraphqlQueryParser.parse("{ Coucou: Hello }")));
+                    }));
+      }));
+
+describe("Parser", (function () {
+        return Jest.test("inline query with sub selections", (function (param) {
+                      return Jest.Expect[/* toEqual */12](/* Ok */Block.__(0, [/* :: */[
+                                      /* Operation */Block.__(0, [/* record */[
+                                            /* typ : Query */0,
+                                            /* selection : :: */[
+                                              /* Field */Block.__(0, [/* record */[
+                                                    /* name */"Hello",
+                                                    /* alias */undefined,
+                                                    /* selection *//* :: */[
+                                                      /* Field */Block.__(0, [/* record */[
+                                                            /* name */"world",
+                                                            /* alias */undefined,
+                                                            /* selection */undefined,
+                                                            /* arguments */undefined
+                                                          ]]),
+                                                      /* [] */0
+                                                    ],
+                                                    /* arguments */undefined
+                                                  ]]),
+                                              /* [] */0
+                                            ],
+                                            /* name */undefined,
+                                            /* variables */undefined
+                                          ]]),
+                                      /* [] */0
+                                    ]]), Jest.Expect[/* expect */0](Parse$BsGraphqlQueryParser.parse("{ Hello { world } }")));
+                    }));
+      }));
+
+describe("Parser", (function () {
+        return Jest.test("inline query with arguments", (function (param) {
+                      return Jest.Expect[/* toEqual */12](/* Ok */Block.__(0, [/* :: */[
+                                      /* Operation */Block.__(0, [/* record */[
+                                            /* typ : Query */0,
+                                            /* selection : :: */[
+                                              /* Field */Block.__(0, [/* record */[
+                                                    /* name */"Hello",
+                                                    /* alias */undefined,
+                                                    /* selection */undefined,
+                                                    /* arguments *//* :: */[
+                                                      /* tuple */[
+                                                        "assoc",
+                                                        /* `Assoc */[
+                                                          963043957,
+                                                          /* :: */[
+                                                            /* tuple */[
+                                                              "float",
+                                                              /* `Float */[
+                                                                365180284,
+                                                                55.5
+                                                              ]
+                                                            ],
+                                                            /* [] */0
+                                                          ]
+                                                        ]
+                                                      ],
+                                                      /* :: */[
+                                                        /* tuple */[
+                                                          "list",
+                                                          /* `List */[
+                                                            848054398,
+                                                            /* :: */[
+                                                              /* `Bool */[
+                                                                737456202,
+                                                                false
+                                                              ],
+                                                              /* :: */[
+                                                                /* `Float */[
+                                                                  365180284,
+                                                                  32.3
+                                                                ],
+                                                                /* :: */[
+                                                                  /* `Int */[
+                                                                    3654863,
+                                                                    32
+                                                                  ],
+                                                                  /* [] */0
+                                                                ]
+                                                              ]
+                                                            ]
+                                                          ]
+                                                        ],
+                                                        /* :: */[
+                                                          /* tuple */[
+                                                            "bool",
+                                                            /* `Bool */[
+                                                              737456202,
+                                                              true
+                                                            ]
+                                                          ],
+                                                          /* :: */[
+                                                            /* tuple */[
+                                                              "float",
+                                                              /* `Float */[
+                                                                365180284,
+                                                                32.2
+                                                              ]
+                                                            ],
+                                                            /* :: */[
+                                                              /* tuple */[
+                                                                "int",
+                                                                /* `Int */[
+                                                                  3654863,
+                                                                  32
+                                                                ]
+                                                              ],
+                                                              /* [] */0
+                                                            ]
+                                                          ]
+                                                        ]
+                                                      ]
+                                                    ]
+                                                  ]]),
+                                              /* [] */0
+                                            ],
+                                            /* name */undefined,
+                                            /* variables */undefined
+                                          ]]),
+                                      /* [] */0
+                                    ]]), Jest.Expect[/* expect */0](Parse$BsGraphqlQueryParser.parse("{ Hello(int: 32, float: 32.2, bool: true, list: [32, 32.3, false], assoc: { \"float\": 55.5 }) }")));
+                    }));
+      }));
+
+describe("Parser", (function () {
+        return Jest.test("inline query with fragments", (function (param) {
+                      return Jest.Expect[/* toEqual */12](/* Ok */Block.__(0, [/* :: */[
+                                      /* Fragment */Block.__(1, [/* record */[
+                                            /* name */"Cool",
+                                            /* type_name */"RootQuery",
+                                            /* selection : :: */[
+                                              /* Field */Block.__(0, [/* record */[
+                                                    /* name */"Hello",
+                                                    /* alias */undefined,
+                                                    /* selection */undefined,
+                                                    /* arguments */undefined
+                                                  ]]),
+                                              /* [] */0
+                                            ]
+                                          ]]),
+                                      /* :: */[
+                                        /* Operation */Block.__(0, [/* record */[
+                                              /* typ : Query */0,
+                                              /* selection : :: */[
+                                                /* FragmentSpread */Block.__(1, [/* record */[/* name */"Cool"]]),
+                                                /* [] */0
+                                              ],
+                                              /* name */undefined,
+                                              /* variables */undefined
+                                            ]]),
+                                        /* [] */0
+                                      ]
+                                    ]]), Jest.Expect[/* expect */0](Parse$BsGraphqlQueryParser.parse("\n              { \n                ...Cool\n              }\n\n              fragment Cool on RootQuery {\n                Hello\n              }\n        ")));
+                    }));
+      }));
+
+describe("Parser", (function () {
+        return Jest.test("inline query with inline fragments", (function (param) {
+                      return Jest.Expect[/* toEqual */12](/* Ok */Block.__(0, [/* :: */[
+                                      /* Operation */Block.__(0, [/* record */[
+                                            /* typ : Query */0,
+                                            /* selection : :: */[
+                                              /* InlineFragment */Block.__(2, [/* record */[
+                                                    /* type_name */"RootQuery",
+                                                    /* selection : :: */[
+                                                      /* Field */Block.__(0, [/* record */[
+                                                            /* name */"Hello",
+                                                            /* alias */undefined,
+                                                            /* selection */undefined,
+                                                            /* arguments */undefined
+                                                          ]]),
+                                                      /* [] */0
+                                                    ]
+                                                  ]]),
+                                              /* [] */0
+                                            ],
+                                            /* name */undefined,
+                                            /* variables */undefined
+                                          ]]),
+                                      /* [] */0
+                                    ]]), Jest.Expect[/* expect */0](Parse$BsGraphqlQueryParser.parse("\n              { \n                ... on RootQuery {\n                  Hello\n                }\n              }\n        ")));
+                    }));
+      }));
+
+describe("Parser", (function () {
+        return Jest.test("normal mutation without name", (function (param) {
+                      return Jest.Expect[/* toEqual */12](/* Ok */Block.__(0, [/* :: */[
+                                      /* Operation */Block.__(0, [/* record */[
+                                            /* typ : Mutation */1,
+                                            /* selection : :: */[
+                                              /* Field */Block.__(0, [/* record */[
+                                                    /* name */"doThings",
+                                                    /* alias */undefined,
+                                                    /* selection */undefined,
+                                                    /* arguments */undefined
+                                                  ]]),
+                                              /* [] */0
+                                            ],
+                                            /* name */undefined,
+                                            /* variables */undefined
+                                          ]]),
+                                      /* [] */0
+                                    ]]), Jest.Expect[/* expect */0](Parse$BsGraphqlQueryParser.parse("\n              mutation {\n                  doThings\n              }\n        ")));
+                    }));
+      }));
+
+describe("Parser", (function () {
+        return Jest.test("normal subscription with name", (function (param) {
+                      return Jest.Expect[/* toEqual */12](/* Ok */Block.__(0, [/* :: */[
+                                      /* Operation */Block.__(0, [/* record */[
+                                            /* typ : Subscription */2,
+                                            /* selection : :: */[
+                                              /* Field */Block.__(0, [/* record */[
+                                                    /* name */"doThings",
+                                                    /* alias */undefined,
+                                                    /* selection */undefined,
+                                                    /* arguments */undefined
+                                                  ]]),
+                                              /* [] */0
+                                            ],
+                                            /* name */"name",
+                                            /* variables */undefined
+                                          ]]),
+                                      /* [] */0
+                                    ]]), Jest.Expect[/* expect */0](Parse$BsGraphqlQueryParser.parse("\n              subscription name {\n                  doThings\n              }\n        ")));
+                    }));
+      }));
+
+describe("Parser", (function () {
+        return Jest.test("normal query with arguments", (function (param) {
+                      return Jest.Expect[/* toEqual */12](/* Ok */Block.__(0, [/* :: */[
+                                      /* Operation */Block.__(0, [/* record */[
+                                            /* typ : Query */0,
+                                            /* selection : :: */[
+                                              /* Field */Block.__(0, [/* record */[
+                                                    /* name */"doThings",
+                                                    /* alias */undefined,
+                                                    /* selection */undefined,
+                                                    /* arguments */undefined
+                                                  ]]),
+                                              /* [] */0
+                                            ],
+                                            /* name */"name",
+                                            /* variables *//* :: */[
+                                              /* Variable */[/* record */[
+                                                  /* name */"string",
+                                                  /* typ : NonNullable */Block.__(1, [/* List */Block.__(2, [/* NonNullable */Block.__(1, [/* Type */Block.__(0, ["String"])])])]),
+                                                  /* default */undefined
+                                                ]],
+                                              /* [] */0
+                                            ]
+                                          ]]),
+                                      /* [] */0
+                                    ]]), Jest.Expect[/* expect */0](Parse$BsGraphqlQueryParser.parse("\n              query name (\$string: [String!]!) {\n                  doThings\n              }\n        ")));
+                    }));
+      }));
+
+describe("Parser", (function () {
+        return Jest.test("normal query with arguments and default value", (function (param) {
+                      return Jest.Expect[/* toEqual */12](/* Ok */Block.__(0, [/* :: */[
+                                      /* Operation */Block.__(0, [/* record */[
+                                            /* typ : Query */0,
+                                            /* selection : :: */[
+                                              /* Field */Block.__(0, [/* record */[
+                                                    /* name */"doThings",
+                                                    /* alias */undefined,
+                                                    /* selection */undefined,
+                                                    /* arguments */undefined
+                                                  ]]),
+                                              /* [] */0
+                                            ],
+                                            /* name */"name",
+                                            /* variables *//* :: */[
+                                              /* Variable */[/* record */[
+                                                  /* name */"string",
+                                                  /* typ : NonNullable */Block.__(1, [/* List */Block.__(2, [/* NonNullable */Block.__(1, [/* Type */Block.__(0, ["String"])])])]),
+                                                  /* default *//* `String */[
+                                                    -976970511,
+                                                    "Yollande"
+                                                  ]
+                                                ]],
+                                              /* [] */0
+                                            ]
+                                          ]]),
+                                      /* [] */0
+                                    ]]), Jest.Expect[/* expect */0](Parse$BsGraphqlQueryParser.parse("\n              query name (\$string: [String!]! = \"Yollande\") {\n                  doThings\n              }\n        ")));
                     }));
       }));
 
