@@ -1,6 +1,6 @@
 {
   "name": "bs-graphql-schema-parser",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "Bucklescript and ReasonML GraphQL Schema Parser / Serializer",
   "keywords": [
     "bs",
