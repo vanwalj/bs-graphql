@@ -1,21 +1,30 @@
 {
-  "name": "bs-graphql-query-parser",
+  "name": "bs-graphql-schema-parser",
   "version": "0.4.0",
-  "description": "Bucklescript and ReasonML GraphQL Query Parser",
+  "description": "Bucklescript and ReasonML GraphQL Schema Parser / Serializer",
+  "keywords": [
+    "bs",
+    "Bucklescript",
+    "re",
+    "Reason",
+    "ReasonML",
+    "GraphQL",
+    "Schema",
+    "Parser",
+    "Serializer"
+  ],
   "author": "Jordan Van Walleghem <j.vanwall@gmail.com>",
   "homepage": "https://github.com/vanwalj/bs-graphql#readme",
   "license": "MIT",
-  "main": "lib/bs-graphql-query-parser.js",
+  "main": "lib/bs-graphql-schema-parser.js",
   "directories": {
     "lib": "lib",
     "src": "src",
     "test": "__tests__"
   },
   "files": [
-    "lib",
-    "src"
+    "lib"
   ],
-  "private": false,
   "repository": {
     "type": "git",
     "url": "git+https://github.com/vanwalj/bs-graphql.git"
@@ -24,14 +33,14 @@
     "test": "npm run format && npm run build && jest",
     "build": "bsb -make-world",
     "clean": "bsb -clean-world",
-    "format": "ocamlformat ./__tests__/*.ml ./src/*.ml ./src/*.mli --inplace"
-  },
-  "bugs": {
-    "url": "https://github.com/vanwalj/bs-graphql/issues"
+    "format": "ocamlformat ./src/*.ml ./src/*.mli --inplace"
   },
   "devDependencies": {
     "@glennsl/bs-jest": "^0.4.5",
     "bs-platform": "^4.0.7",
     "jest": "^23.6.0"
+  },
+  "bugs": {
+    "url": "https://github.com/vanwalj/bs-graphql/issues"
   }
 }
