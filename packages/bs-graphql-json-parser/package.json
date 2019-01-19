@@ -1,6 +1,6 @@
 {
   "name": "bs-graphql-json-parser",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "Bucklescript JSON parser / serializer",
   "keywords": [
     "Bucklescript",

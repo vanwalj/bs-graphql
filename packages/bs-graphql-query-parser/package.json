@@ -1,6 +1,6 @@
 {
   "name": "bs-graphql-query-parser",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "Bucklescript and ReasonML GraphQL Query Parser",
   "author": "Jordan Van Walleghem <j.vanwall@gmail.com>",
   "homepage": "https://github.com/vanwalj/bs-graphql#readme",
