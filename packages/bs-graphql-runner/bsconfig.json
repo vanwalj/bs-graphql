@@ -1,0 +1,20 @@
+{
+  "name": "bs-graphql-runner",
+  "namespace": true,
+  "version": "0.1.0",
+  "sources": {
+    "dir": "src",
+    "subdirs": true
+  },
+  "package-specs": {
+    "module": "commonjs",
+    "in-source": false
+  },
+  "suffix": ".bs.js",
+  "bs-dependencies": ["bs-graphql-json-parser", "bs-graphql-query-parser"],
+  "bs-dev-dependencies": ["@glennsl/bs-jest"],
+  "warnings": {
+    "error": "+101"
+  },
+  "refmt": 3
+}

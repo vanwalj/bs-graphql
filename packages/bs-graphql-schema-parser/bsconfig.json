@@ -9,11 +9,16 @@
       "generators": [
         {
           "name": "menhir",
-          "edge": ["parser.ml", "parser.mli", ":", "parser.mly"]
+          "edge": [
+            "menhir_parser.ml",
+            "menhir_parser.mli",
+            ":",
+            "menhir_parser.mly"
+          ]
         },
         {
           "name": "ocamllex",
-          "edge": ["lexer.ml", ":", "lexer.mll"]
+          "edge": ["ocamllex_lexer.ml", ":", "ocamllex_lexer.mll"]
         }
       ]
     }
@@ -24,7 +29,7 @@
   ],
   "package-specs": {
     "module": "commonjs",
-    "in-source": true
+    "in-source": false
   },
   "suffix": ".bs.js",
   "bs-dependencies": [],

@@ -1,5 +1,3 @@
-open Lexing
-
 type position = {fileName: string; lineNumber: int; columnNumber: int}
 
 type message = string
@@ -9,16 +7,15 @@ type parse_error =
   | ParserError of position
 
 let get_position lexbuf =
-  let pos = lexbuf.lex_curr_p in
-  { fileName= pos.pos_fname
-  ; lineNumber= pos.pos_lnum
-  ; columnNumber= pos.pos_cnum - pos.pos_bol + 1 }
+  Lexing.(
+    let pos = lexbuf.lex_curr_p in
+    { fileName= pos.pos_fname
+    ; lineNumber= pos.pos_lnum
+    ; columnNumber= pos.pos_cnum - pos.pos_bol + 1 })
 
 let parse s =
-  let lexbuf = from_string s in
-  try
-    Belt.Result.Ok (Menhir_parser.read_document Ocamllex_lexer.read lexbuf)
-  with
+  let lexbuf = Lexing.from_string s in
+  try Belt.Result.Ok (Menhir_parser.prog Ocamllex_lexer.read lexbuf) with
   | Ocamllex_lexer.SyntaxError msg ->
       Belt.Result.Error (SyntaxError (get_position lexbuf, msg))
   | Menhir_parser.Error ->

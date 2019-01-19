@@ -6,7 +6,7 @@ open Belt.Result
 ;;
 describe "Parser" (fun () ->
     test "simple inline queries" (fun () ->
-        expect (Parse.parse {j|{ Hello Titi }|j})
+        expect (Parser.parse {j|{ Hello Titi }|j})
         |> toEqual
              (Ok
                 [ Operation
@@ -28,7 +28,7 @@ describe "Parser" (fun () ->
 ;;
 describe "Parser" (fun () ->
     test "inline query with alias" (fun () ->
-        expect (Parse.parse {j|{ Coucou: Hello }|j})
+        expect (Parser.parse {j|{ Coucou: Hello }|j})
         |> toEqual
              (Ok
                 [ Operation
@@ -45,7 +45,7 @@ describe "Parser" (fun () ->
 ;;
 describe "Parser" (fun () ->
     test "inline query with sub selections" (fun () ->
-        expect (Parse.parse {j|{ Hello { world } }|j})
+        expect (Parser.parse {j|{ Hello { world } }|j})
         |> toEqual
              (Ok
                 [ Operation
@@ -69,7 +69,7 @@ describe "Parser" (fun () ->
 describe "Parser" (fun () ->
     test "inline query with arguments" (fun () ->
         expect
-          (Parse.parse
+          (Parser.parse
              {j|{ Hello(int: 32, float: 32.2, bool: true, list: [32, 32.3, false], assoc: { "float": 55.5 }) }|j})
         |> toEqual
              (Ok
@@ -96,7 +96,7 @@ describe "Parser" (fun () ->
 describe "Parser" (fun () ->
     test "inline query with fragments" (fun () ->
         expect
-          (Parse.parse
+          (Parser.parse
              {j|
               { 
                 ...Cool
@@ -127,7 +127,7 @@ describe "Parser" (fun () ->
 describe "Parser" (fun () ->
     test "inline query with inline fragments" (fun () ->
         expect
-          (Parse.parse
+          (Parser.parse
              {j|
               { 
                 ... on RootQuery {
@@ -155,7 +155,7 @@ describe "Parser" (fun () ->
 describe "Parser" (fun () ->
     test "normal mutation without name" (fun () ->
         expect
-          (Parse.parse
+          (Parser.parse
              {j|
               mutation {
                   doThings
@@ -178,7 +178,7 @@ describe "Parser" (fun () ->
 describe "Parser" (fun () ->
     test "normal subscription with name" (fun () ->
         expect
-          (Parse.parse
+          (Parser.parse
              {j|
               subscription name {
                   doThings
@@ -201,7 +201,7 @@ describe "Parser" (fun () ->
 describe "Parser" (fun () ->
     test "normal query with arguments" (fun () ->
         expect
-          (Parse.parse
+          (Parser.parse
              {j|
               query name (\$string: [String!]!) {
                   doThings
@@ -231,7 +231,7 @@ describe "Parser" (fun () ->
 describe "Parser" (fun () ->
     test "normal query with arguments and default value" (fun () ->
         expect
-          (Parse.parse
+          (Parser.parse
              {j|
               query name (\$string: [String!]! = "Yollande") {
                   doThings
